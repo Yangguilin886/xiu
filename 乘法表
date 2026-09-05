@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+void s(int n,int p)
+{
+    int ret[10000];
+    int i=0;
+    while(n)
+    {
+        ret[i++]=n%p;
+        n/=p;
+    }
+    for(int j=i-1;j>=0;j--)
+    {
+        if(ret[j]<10)
+        {
+            cout<<ret[j];
+        }
+        else
+        {
+            cout<<(char)('A'+(ret[j]-10));
+        }
+    }
+}
+int main()
+{
+    int p=0;
+    cin>>p;
+    for(int i=1;i<p;i++)
+    {
+        for(int j=1;j<=i;j++)
+        {
+            if(i<10)
+            {
+                cout<<i;
+            }
+            else
+            {
+                cout<<(char)('A'+(i-10));
+            }
+            cout<<"*";
+            if(j<10)
+            {
+                cout<<j;
+            }
+            else
+            {
+                cout<<(char)('A'+(j-10));
+            }
+            cout<<"=";
+            s(i*j,p);
+            cout<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
