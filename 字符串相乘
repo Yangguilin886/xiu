@@ -1,0 +1,41 @@
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        reverse(num1.begin(),num1.end());
+        reverse(num2.begin(),num2.end());
+        int n=num1.size(),m=num2.size();
+        vector<int> ret(n+m-1);
+        for(int i=0;i<num1.size();i++)
+        {
+            for(int j=0;j<num2.size();j++)
+            {
+                ret[i+j]+=(num1[i]-'0')*(num2[j]-'0');
+            }
+        }
+        string tmp;
+        int flag=0;
+        for(int i=0;i<ret.size();i++)
+        {
+            ret[i]+=flag;
+            flag=ret[i]/10;
+            tmp+=to_string(ret[i]%10);
+        }
+        if(flag)
+        {
+            tmp+=to_string(flag);
+        }
+        for(int i=tmp.size()-1;i>0;i--)
+        {
+            if(tmp[i]=='0')
+            {
+                tmp.pop_back();
+            }
+            else
+            {
+                break;
+            }
+        }
+        reverse(tmp.begin(),tmp.end());
+        return tmp;
+    }
+};
